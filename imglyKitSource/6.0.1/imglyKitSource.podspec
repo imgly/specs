@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
 	s.source_files 				 	= ['imglyKit/**/*.{h,m,swift}']
 	s.private_header_files	= 'imglyKit/Licensing/NSData_SHA1.h'
-	s.resources 						= ['Resources/Assets/*', 'Resources/en.lproj/*', 'Resources/Filter Responses/*.png', 'Resources/Fonts/*', 'Resources/Shaders/*', 'imglyKit/ProjectModule/module.modulemap']
+	s.resources 						= ['Resources/Assets/*', 'Resources/en.lproj/*', 'Resources/Filter Responses/*.png', 'Resources/Fonts/*', 'Resources/Shaders/*', 'imglyKit/ProjectModule/module.modulemap', 'Resources/public']
 
 	s.pod_target_xcconfig  	= { 'COMPRESS_PNG_FILES' => 0, 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/imglyKitSource/imglyKit/ProjectModule' }
 	s.frameworks           	= 'Accelerate', 'AVFoundation', 'CoreGraphics', 'CoreImage', 'CoreMotion', 'CoreText', 'Foundation', 'GLKit', 'ImageIO', 'MobileCoreServices', 'OpenGLES', 'Photos', 'UIKit'
