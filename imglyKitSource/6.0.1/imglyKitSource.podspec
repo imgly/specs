@@ -11,10 +11,9 @@ Pod::Spec.new do |s|
 	s.source            	 	= { :git => 'https://github.com/imgly/imgly-sdk-ios-private.git', :tag => s.version.to_s }
 
 	s.source_files 				 	= ['imglyKit/**/*.{h,m,swift}']
-	s.private_header_files	= 'imglyKit/Licensing/NSData_SHA1.h'
-	s.resources 						= ['Resources/Assets/*', 'Resources/en.lproj/*', 'Resources/Filter Responses/*.png', 'Resources/Fonts/*', 'Resources/Shaders/*', 'imglyKit/ProjectModule/module.modulemap', 'Resources/public']
+	s.resources 						= ['Resources/Assets/*', 'Resources/en.lproj/*', 'Resources/Filter Responses/*.png', 'Resources/Fonts/*', 'Resources/Shaders/*', 'Resources/public.pem']
 
-	s.pod_target_xcconfig  	= { 'COMPRESS_PNG_FILES' => 0, 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/imglyKitSource/imglyKit/ProjectModule' }
+	s.pod_target_xcconfig  	= { 'COMPRESS_PNG_FILES' => 0 }
 	s.frameworks           	= 'Accelerate', 'AVFoundation', 'CoreGraphics', 'CoreImage', 'CoreMotion', 'CoreText', 'Foundation', 'GLKit', 'ImageIO', 'MobileCoreServices', 'OpenGLES', 'Photos', 'UIKit'
 	s.requires_arc 				 	= true
 end
