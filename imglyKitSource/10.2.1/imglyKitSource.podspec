@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source_files        = ['ImglyKit/**/*.{h,m,mm,swift,metal}', 'Common/**/*.{h,m,mm,swift,metal}']
   s.resources           = ['Resources/Assets/*', 'Resources/en.lproj/*', 'Resources/Filter Responses/*.png', 'Resources/Fonts/*', 'Resources/Kernels/*', 'Resources/Shaders/*']
 
-  s.pod_target_xcconfig = { 'COMPRESS_PNG_FILES' => 0, 'MTL_COMPILER_FLAGS' => '-mios-version-min=12.0 --target=air64-apple-ios12.0 -fcikernel', 'MTLLINKER_FLAGS' => '-cikernel' }
+  s.pod_target_xcconfig = { 'COMPRESS_PNG_FILES' => 0, 'MTL_COMPILER_FLAGS' => '-mios-version-min=12.0 --target=air64-apple-ios12.0 -fcikernel', 'MTLLINKER_FLAGS' => '-cikernel', 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'IMGLYKIT' }
   s.frameworks          = 'Accelerate', 'AVFoundation', 'CFNetwork', 'CoreGraphics', 'CoreImage', 'CoreLocation', 'CoreMotion', 'CoreText', 'Foundation', 'GLKit', 'ImageIO', 'MobileCoreServices', 'OpenGLES', 'Photos', 'UIKit'
   s.requires_arc        = true
 end
