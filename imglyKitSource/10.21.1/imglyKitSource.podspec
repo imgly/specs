@@ -11,10 +11,24 @@ Pod::Spec.new do |s|
   s.source              = { :git => 'https://github.com/imgly/pesdk-ios.git', :tag => s.version.to_s }
 
   s.module_name         = 'ImglyKit'
-  s.source_files        = ['ImglyKit/**/*.{h,m,mm,swift,metal}', 'Common/**/*.{h,m,mm,swift,metal}']
+  s.source_files        = ['ImglyKit/**/*.{h,m,mm,swift}', 'Common/**/*.{h,m,mm,swift}']
   s.resources           = ['Resources/Assets/*', 'Resources/en.lproj/*', 'Resources/Filter Responses/*.png', 'Resources/Fonts/*', 'Resources/Kernels/*', 'Resources/Shaders/*']
 
-  s.pod_target_xcconfig = { 'COMPRESS_PNG_FILES' => 0, 'MTL_COMPILER_FLAGS' => '-mios-version-min=12.0 --target=air64-apple-ios12.0 -fcikernel', 'MTLLINKER_FLAGS' => '-cikernel', 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'IMGLYKIT' }
+  s.pod_target_xcconfig = { 'COMPRESS_PNG_FILES' => 0, 'MTL_COMPILER_FLAGS' => '-mios-version-min=12.0 --target=air64-apple-ios12.0', 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'IMGLYKIT' }
   s.frameworks          = 'Accelerate', 'AVFoundation', 'CFNetwork', 'CoreGraphics', 'CoreImage', 'CoreLocation', 'CoreMotion', 'CoreText', 'Foundation', 'GLKit', 'ImageIO', 'MobileCoreServices', 'OpenGLES', 'Photos', 'UIKit'
   s.requires_arc        = true
+  s.preserve_paths      = 'ImglyKit/**/*.ci.metal'
+  s.script_phase        = { 
+                            :name => 'Core Image Metal Compiler', 
+                            :script => 'xcrun metal -c -I ${MTL_HEADER_SEARCH_PATHS} ${MTL_COMPILER_FLAGS} -fcikernel "${SCRIPT_INPUT_FILE_0}" -o "${SCRIPT_OUTPUT_FILE_0}"', 
+                            :input_files => ['${PODS_TARGET_SRCROOT}/ImglyKit/Backend/Rendering/Kernels.ci.metal'], 
+                            :output_files => ['${DERIVED_FILE_DIR}/Kernels.ci.air'] ,
+                            :execution_position => :before_compile
+                          }, {
+                            :name => 'Core Image Metal Linker', 
+                            :script => 'xcrun metallib -cikernel "${SCRIPT_INPUT_FILE_0}" -o "${SCRIPT_OUTPUT_FILE_0}"', 
+                            :input_files => ['${DERIVED_FILE_DIR}/Kernels.ci.air'], 
+                            :output_files => ['${METAL_LIBRARY_OUTPUT_DIR}/Kernels.ci.metallib'],
+                            :execution_position => :before_compile
+                          }
 end
