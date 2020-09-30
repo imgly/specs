@@ -12,9 +12,9 @@ Pod::Spec.new do |s|
   s.source              = { :git => 'https://github.com/imgly/pesdk-ios.git', :tag => s.version.to_s }
 
   s.module_name         = 'PhotoEditorSDK'
-  s.source_files        = ['PhotoEditorSDK/**/*.{h,m,mm,swift,metal}', 'Common/**/*.{h,m,mm,swift,metal}']
+  s.source_files        = ['PhotoEditorSDK/**/*.{h,m,mm,swift}', 'Common/**/*.{h,m,mm,swift}']
 
-  s.pod_target_xcconfig = { 'COMPRESS_PNG_FILES' => 0, 'MTL_COMPILER_FLAGS' => '-mios-version-min=12.0 --target=air64-apple-ios12.0 -fcikernel', 'MTLLINKER_FLAGS' => '-cikernel', 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PHOTOEDITORSDK' }
+  s.pod_target_xcconfig = { 'COMPRESS_PNG_FILES' => 0, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PHOTOEDITORSDK' }
   s.frameworks          = 'Accelerate', 'AVFoundation', 'CFNetwork', 'CoreGraphics', 'CoreImage', 'CoreLocation', 'CoreMotion', 'CoreText', 'Foundation', 'GLKit', 'ImageIO', 'MobileCoreServices', 'OpenGLES', 'Photos', 'UIKit'
   s.requires_arc        = true
 
