@@ -1,0 +1,85 @@
+{
+  "name": "imglyKitSource",
+  "swift_versions": "5.6",
+  "version": "11.10.6",
+  "license": {
+    "type": "Commercial",
+    "file": "LICENSE.md"
+  },
+  "summary": "The creative engine of tomorrow's world!",
+  "homepage": "https://img.ly",
+  "authors": {
+    "IMG.LY GmbH": "contact@img.ly"
+  },
+  "cocoapods_version": ">= 1.10.0",
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source": {
+    "git": "https://github.com/imgly/pesdk-ios.git",
+    "tag": "11.10.6"
+  },
+  "module_name": "ImglyKit",
+  "source_files": [
+    "ImglyKit/**/*.{h,m,mm,swift}",
+    "Common/**/*.{h,m,mm,swift}"
+  ],
+  "resources": [
+    "Resources/Assets/*",
+    "Resources/en.lproj/*",
+    "Resources/Filter Responses/*.png",
+    "Resources/Fonts/*"
+  ],
+  "resource_bundles": {
+    "ImglyKitPrivacy": [
+      "ImglyKit/Supporting Files/PrivacyInfo.xcprivacy"
+    ]
+  },
+  "pod_target_xcconfig": {
+    "COMPRESS_PNG_FILES": 0,
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "IMGLYKIT"
+  },
+  "frameworks": [
+    "Accelerate",
+    "AVFoundation",
+    "CFNetwork",
+    "CoreGraphics",
+    "CoreImage",
+    "CoreLocation",
+    "CoreMotion",
+    "CoreText",
+    "Foundation",
+    "ImageIO",
+    "CoreServices",
+    "Photos",
+    "UIKit",
+    "SwiftUI"
+  ],
+  "requires_arc": true,
+  "preserve_paths": "ImglyKit/**/*.ci.metal",
+  "script_phases": [
+    {
+      "name": "Core Image Metal Compiler",
+      "script": "xcrun metal -c ${MTL_COMPILER_FLAGS} -fcikernel \"${SCRIPT_INPUT_FILE_0}\" -o \"${SCRIPT_OUTPUT_FILE_0}\"",
+      "input_files": [
+        "${PODS_TARGET_SRCROOT}/ImglyKit/Backend/Rendering/Kernels.ci.metal"
+      ],
+      "output_files": [
+        "${DERIVED_FILE_DIR}/Kernels.ci.air"
+      ],
+      "execution_position": "before_compile"
+    },
+    {
+      "name": "Core Image Metal Linker",
+      "script": "xcrun metallib -cikernel \"${SCRIPT_INPUT_FILE_0}\" -o \"${SCRIPT_OUTPUT_FILE_0}\"",
+      "input_files": [
+        "${DERIVED_FILE_DIR}/Kernels.ci.air"
+      ],
+      "output_files": [
+        "${METAL_LIBRARY_OUTPUT_DIR}/Kernels.ci.metallib"
+      ],
+      "execution_position": "before_compile"
+    }
+  ],
+  "swift_version": "5.6"
+}
