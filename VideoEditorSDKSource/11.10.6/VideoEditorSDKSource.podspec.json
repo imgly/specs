@@ -1,0 +1,54 @@
+{
+  "name": "VideoEditorSDKSource",
+  "swift_versions": "5.6",
+  "version": "11.10.6",
+  "license": {
+    "type": "Commercial",
+    "file": "LICENSE.md"
+  },
+  "summary": "Integrate the video editor into your own HTML5, iOS or Android app - in minutes!",
+  "homepage": "https://img.ly/video-sdk",
+  "authors": {
+    "IMG.LY GmbH": "contact@img.ly"
+  },
+  "cocoapods_version": ">= 1.10.0",
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source": {
+    "git": "https://github.com/imgly/pesdk-ios.git",
+    "tag": "11.10.6"
+  },
+  "module_name": "VideoEditorSDK",
+  "source_files": [
+    "VideoEditorSDK/**/*.{h,m,mm,swift}",
+    "Common/**/*.{h,m,mm,swift}"
+  ],
+  "pod_target_xcconfig": {
+    "COMPRESS_PNG_FILES": 0,
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "VIDEOEDITORSDK"
+  },
+  "frameworks": [
+    "Accelerate",
+    "AVFoundation",
+    "CFNetwork",
+    "CoreGraphics",
+    "CoreImage",
+    "CoreLocation",
+    "CoreMotion",
+    "CoreText",
+    "Foundation",
+    "ImageIO",
+    "CoreServices",
+    "Photos",
+    "UIKit",
+    "SwiftUI"
+  ],
+  "requires_arc": true,
+  "dependencies": {
+    "imglyKitSource": [
+      "11.10.6"
+    ]
+  },
+  "swift_version": "5.6"
+}
